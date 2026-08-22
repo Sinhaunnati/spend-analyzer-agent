@@ -1,0 +1,165 @@
+txn_id,date,merchant,description,amount,mode
+TXN1007,2026-05-01,Zomato,Food delivery,474.5,UPI
+TXN1005,2026-05-02,BSES Electricity,Electricity bill,926.82,UPI
+TXN1019,2026-05-02,Swiggy,Food delivery,491.89,UPI
+TXN1024,2026-05-02,Uber,Ride,338.22,UPI
+TXN1016,2026-05-03,Swiggy,Food delivery,351.97,UPI
+TXN1021,2026-05-03,BigBasket,Groceries,1572.86,NetBanking
+TXN1026,2026-05-03,Uber,Ride,402.25,UPI
+TXN1043,2026-05-05,Apollo Pharmacy,Medicines,334.97,NetBanking
+TXN1157,2026-05-05,Mom,UPI transfer,2500,UPI
+TXN1152,2026-05-06,Riya Kapoor,UPI transfer,1000,UPI
+TXN1041,2026-05-07,PVR Cinemas,Movie tickets,562.18,Card
+TXN1006,2026-05-08,Zomato,Food delivery,452.14,UPI
+TXN1038,2026-05-08,Amazon,Shopping,2929.77,Card
+TXN1002,2026-05-09,Netflix,Subscription,199.0,UPI
+TXN1014,2026-05-09,Swiggy,Food delivery,262.19,UPI
+TXN1028,2026-05-09,Uber,Ride,269.63,UPI
+TXN1156,2026-05-10,Arjun Mehta,UPI transfer,2500,UPI
+TXN1037,2026-05-11,Amazon,Shopping,2997.13,UPI
+TXN1017,2026-05-12,Swiggy,Food delivery,539.0,UPI
+TXN1030,2026-05-12,Uber,Ride,237.24,UPI
+TXN1151,2026-05-12,Rohan (roommate),UPI transfer,1000,UPI
+TXN1039,2026-05-13,Myntra,Shopping,1115.8,UPI
+TXN1136,2026-05-13,Riya Kapoor,UPI transfer,2500,UPI
+TXN1161,2026-05-13,Adobe Creative Cloud,Subscription (unused since April),199.0,Card
+TXN1010,2026-05-15,Zomato,Food delivery,485.71,UPI
+TXN1035,2026-05-15,Amazon,Shopping,1514.26,NetBanking
+TXN1133,2026-05-17,Mom,UPI transfer,1500,UPI
+TXN1138,2026-05-17,Mom,UPI transfer,200,UPI
+TXN1153,2026-05-17,Mom,UPI transfer,500,UPI
+TXN1004,2026-05-18,Airtel Postpaid,Mobile bill,407.69,Card
+TXN1009,2026-05-18,Zomato,Food delivery,417.81,UPI
+TXN1020,2026-05-18,BigBasket,Groceries,974.76,Card
+TXN1034,2026-05-18,Amazon,Shopping,2633.21,UPI
+TXN1044,2026-05-18,Apollo Pharmacy,Medicines,347.06,NetBanking
+TXN1023,2026-05-19,BigBasket,Groceries,1069.2,UPI
+TXN1040,2026-05-19,Myntra,Shopping,2515.65,Card
+TXN1018,2026-05-20,Swiggy,Food delivery,305.81,UPI
+TXN1022,2026-05-20,BigBasket,Groceries,2039.63,Card
+TXN1033,2026-05-20,Uber,Ride,329.54,UPI
+TXN1001,2026-05-21,Landlord - Sharma Properties,Monthly rent,18000.0,NetBanking
+TXN1042,2026-05-21,Cult.fit,Gym membership,999.0,Card
+TXN1140,2026-05-21,Rohan (roommate),UPI transfer,2500,UPI
+TXN1031,2026-05-22,Uber,Ride,208.1,UPI
+TXN1032,2026-05-22,Uber,Ride,333.85,UPI
+TXN1008,2026-05-23,Zomato,Food delivery,509.95,UPI
+TXN1013,2026-05-23,Zomato,Food delivery,419.05,UPI
+TXN1036,2026-05-23,Amazon,Shopping,2082.24,NetBanking
+TXN1003,2026-05-24,Spotify,Subscription,119.0,NetBanking
+TXN1012,2026-05-25,Zomato,Food delivery,572.33,UPI
+TXN1015,2026-05-25,Swiggy,Food delivery,334.64,UPI
+TXN1025,2026-05-25,Uber,Ride,215.5,UPI
+TXN1011,2026-05-26,Zomato,Food delivery,597.72,UPI
+TXN1029,2026-05-27,Uber,Ride,240.39,UPI
+TXN1027,2026-05-28,Uber,Ride,153.33,UPI
+TXN1137,2026-05-28,Sneha Iyer,UPI transfer,1000,UPI
+TXN1054,2026-05-31,Zomato,Food delivery,522.11,UPI
+TXN1067,2026-05-31,BigBasket,Groceries,1638.52,Card
+TXN1068,2026-05-31,Uber,Ride,156.92,UPI
+TXN1086,2026-05-31,Cult.fit,Gym membership,999.0,NetBanking
+TXN1087,2026-06-01,Apollo Pharmacy,Medicines,321.71,UPI
+TXN1139,2026-06-01,Mom,UPI transfer,1000,UPI
+TXN1073,2026-06-02,Uber,Ride,361.53,UPI
+TXN1084,2026-06-02,Myntra,Shopping,1277.6,NetBanking
+TXN1055,2026-06-03,Zomato,Food delivery,522.68,UPI
+TXN1058,2026-06-03,Swiggy,Food delivery,317.4,UPI
+TXN1063,2026-06-03,Swiggy,Food delivery,548.21,UPI
+TXN1145,2026-06-03,Riya Kapoor,UPI transfer,200,UPI
+TXN1076,2026-06-04,Uber,Ride,162.37,UPI
+TXN1049,2026-06-05,BSES Electricity,Electricity bill,1612.87,Card
+TXN1059,2026-06-05,Swiggy,Food delivery,381.49,UPI
+TXN1078,2026-06-05,Amazon,Shopping,1148.18,NetBanking
+TXN1147,2026-06-06,Sneha Iyer,UPI transfer,500,UPI
+TXN1071,2026-06-07,Uber,Ride,139.12,UPI
+TXN1061,2026-06-08,Swiggy,Food delivery,588.76,UPI
+TXN1064,2026-06-09,BigBasket,Groceries,1978.34,NetBanking
+TXN1134,2026-06-10,Riya Kapoor,UPI transfer,200,UPI
+TXN1046,2026-06-11,Netflix,Subscription,199.0,UPI
+TXN1069,2026-06-11,Uber,Ride,409.98,UPI
+TXN1051,2026-06-12,Zomato,Food delivery,488.36,UPI
+TXN1162,2026-06-12,Adobe Creative Cloud,Subscription (unused since April),199.0,Card
+TXN1045,2026-06-13,Landlord - Sharma Properties,Monthly rent,18000.0,Card
+TXN1079,2026-06-13,Amazon,Shopping,3385.96,NetBanking
+TXN1052,2026-06-14,Zomato,Food delivery,461.65,UPI
+TXN1083,2026-06-14,Myntra,Shopping,778.31,UPI
+TXN1077,2026-06-15,Uber,Ride,432.46,UPI
+TXN1158,2026-06-15,Amazon,Shopping,2499.0,Card
+TXN1159,2026-06-15,Amazon,Shopping,2499.0,Card
+TXN1047,2026-06-16,Spotify,Subscription,119.0,UPI
+TXN1053,2026-06-17,Zomato,Food delivery,594.31,UPI
+TXN1056,2026-06-17,Zomato,Food delivery,550.35,UPI
+TXN1085,2026-06-17,PVR Cinemas,Movie tickets,392.05,UPI
+TXN1072,2026-06-18,Uber,Ride,432.49,UPI
+TXN1050,2026-06-19,Zomato,Food delivery,275.41,UPI
+TXN1065,2026-06-19,BigBasket,Groceries,1078.48,Card
+TXN1082,2026-06-20,Amazon,Shopping,1494.95,NetBanking
+TXN1081,2026-06-22,Amazon,Shopping,1297.49,NetBanking
+TXN1060,2026-06-23,Swiggy,Food delivery,550.34,UPI
+TXN1057,2026-06-24,Zomato,Food delivery,506.38,UPI
+TXN1062,2026-06-24,Swiggy,Food delivery,271.46,UPI
+TXN1066,2026-06-24,BigBasket,Groceries,1026.17,NetBanking
+TXN1075,2026-06-24,Uber,Ride,295.79,UPI
+TXN1080,2026-06-24,Amazon,Shopping,2635.78,UPI
+TXN1164,2026-06-25,iCare Service Center,Laptop repair,8500.0,Card
+TXN1070,2026-06-26,Uber,Ride,386.24,UPI
+TXN1074,2026-06-26,Uber,Ride,142.84,UPI
+TXN1154,2026-06-26,Sneha Iyer,UPI transfer,1500,UPI
+TXN1048,2026-06-27,Airtel Postpaid,Mobile bill,409.96,NetBanking
+TXN1088,2026-06-27,Apollo Pharmacy,Medicines,397.82,NetBanking
+TXN1135,2026-06-28,Sneha Iyer,UPI transfer,2500,UPI
+TXN1120,2026-07-01,Uber,Ride,311.13,UPI
+TXN1105,2026-07-02,Swiggy,Food delivery,377.25,UPI
+TXN1125,2026-07-02,Amazon,Shopping,3024.3,UPI
+TXN1150,2026-07-02,Mom,UPI transfer,200,UPI
+TXN1098,2026-07-03,Zomato,Food delivery,274.25,UPI
+TXN1107,2026-07-03,Swiggy,Food delivery,220.24,UPI
+TXN1103,2026-07-05,Swiggy,Food delivery,311.42,UPI
+TXN1112,2026-07-05,Uber,Ride,245.06,UPI
+TXN1124,2026-07-05,Amazon,Shopping,482.01,NetBanking
+TXN1090,2026-07-06,Netflix,Subscription,199.0,NetBanking
+TXN1093,2026-07-06,BSES Electricity,Electricity bill,984.89,NetBanking
+TXN1101,2026-07-06,Zomato,Food delivery,326.08,UPI
+TXN1089,2026-07-07,Landlord - Sharma Properties,Monthly rent,18000.0,Card
+TXN1104,2026-07-07,Swiggy,Food delivery,549.79,UPI
+TXN1128,2026-07-07,Myntra,Shopping,1831.51,UPI
+TXN1131,2026-07-08,Apollo Pharmacy,Medicines,303.19,NetBanking
+TXN1115,2026-07-09,Uber,Ride,259.59,UPI
+TXN1119,2026-07-09,Uber,Ride,191.84,UPI
+TXN1122,2026-07-10,Amazon,Shopping,482.93,NetBanking
+TXN1132,2026-07-10,Apollo Pharmacy,Medicines,329.01,Card
+TXN1146,2026-07-10,Arjun Mehta,UPI transfer,1000,UPI
+TXN1160,2026-07-10,Netflix,Subscription,249.0,Card
+TXN1155,2026-07-11,Riya Kapoor,UPI transfer,200,UPI
+TXN1113,2026-07-12,Uber,Ride,207.52,UPI
+TXN1127,2026-07-12,Myntra,Shopping,775.74,NetBanking
+TXN1163,2026-07-12,Adobe Creative Cloud,Subscription (unused since April),199.0,Card
+TXN1094,2026-07-13,Zomato,Food delivery,391.72,UPI
+TXN1095,2026-07-13,Zomato,Food delivery,436.81,UPI
+TXN1110,2026-07-13,BigBasket,Groceries,1479.9,UPI
+TXN1102,2026-07-14,Swiggy,Food delivery,256.07,UPI
+TXN1118,2026-07-15,Uber,Ride,171.08,UPI
+TXN1123,2026-07-15,Amazon,Shopping,1909.12,NetBanking
+TXN1108,2026-07-17,BigBasket,Groceries,1970.44,UPI
+TXN1117,2026-07-17,Uber,Ride,338.42,UPI
+TXN1121,2026-07-17,Uber,Ride,140.12,UPI
+TXN1091,2026-07-18,Spotify,Subscription,119.0,UPI
+TXN1130,2026-07-18,Cult.fit,Gym membership,999.0,Card
+TXN1126,2026-07-19,Amazon,Shopping,517.47,UPI
+TXN1129,2026-07-19,PVR Cinemas,Movie tickets,332.79,NetBanking
+TXN1097,2026-07-20,Zomato,Food delivery,643.67,UPI
+TXN1096,2026-07-23,Zomato,Food delivery,271.67,UPI
+TXN1099,2026-07-23,Zomato,Food delivery,385.72,UPI
+TXN1116,2026-07-23,Uber,Ride,448.49,UPI
+TXN1142,2026-07-23,Sneha Iyer,UPI transfer,200,UPI
+TXN1109,2026-07-24,BigBasket,Groceries,1988.17,UPI
+TXN1144,2026-07-24,Riya Kapoor,UPI transfer,500,UPI
+TXN1092,2026-07-25,Airtel Postpaid,Mobile bill,446.3,Card
+TXN1114,2026-07-25,Uber,Ride,379.09,UPI
+TXN1143,2026-07-25,Sneha Iyer,UPI transfer,1000,UPI
+TXN1100,2026-07-27,Zomato,Food delivery,293.71,UPI
+TXN1106,2026-07-27,Swiggy,Food delivery,542.39,UPI
+TXN1111,2026-07-27,BigBasket,Groceries,1361.46,UPI
+TXN1149,2026-07-27,Mom,UPI transfer,2500,UPI
+TXN1141,2026-07-30,Mom,UPI transfer,2500,UPI
+TXN1148,2026-07-31,Mom,UPI transfer,500,UPI

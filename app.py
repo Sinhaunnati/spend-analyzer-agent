@@ -56,14 +56,11 @@ with st.sidebar:
         st.bar_chart(category_spend)
 
         st.markdown("---")
+        # Fix: Run the audit function directly using local Python code (No API Rate Limit!)
         if st.button("🚀 Run AI CFO Audit", use_container_width=True):
-            prompt = "Run a complete financial health audit on my spending."
-            st.session_state.messages.append({"role": "user", "content": prompt})
-            try:
-                response = st.session_state.chat.send_message(prompt)
-                st.session_state.messages.append({"role": "assistant", "content": response.text})
-            except Exception:
-                st.session_state.messages.append({"role": "assistant", "content": "⚠️ Rate limit reached. Please wait 10 seconds."})
+            audit_result = run_financial_health_audit()
+            st.session_state.messages.append({"role": "user", "content": "Run a complete financial health audit on my spending."})
+            st.session_state.messages.append({"role": "assistant", "content": audit_result})
             st.rerun()
 
         report_text = f"RAZORPAY BUILDATHON REPORT\nTotal Spend: ₹{df['amount'].sum():,.2f}"
@@ -92,12 +89,10 @@ st.caption("Powered by Gemini function-calling on real bank data.")
 
 st.markdown("---")
 
-# Display all previous messages in the chat
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# The input box where you type questions
 if prompt := st.chat_input("Ask a question about your spending..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):

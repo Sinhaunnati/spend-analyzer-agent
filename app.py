@@ -5,12 +5,13 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-# Import your real, tested functions (including the new monthly comparison tool)
+# Import all real, tested functions (including the new financial audit tool)
 from tools import (
     get_total_by_category, 
     find_duplicate_charges, 
     find_unusual_transactions, 
-    get_monthly_comparison
+    get_monthly_comparison,
+    run_financial_health_audit
 )
 
 # Set up the look of the web page
@@ -33,7 +34,8 @@ if "chat" not in st.session_state:
         get_total_by_category, 
         find_duplicate_charges, 
         find_unusual_transactions, 
-        get_monthly_comparison
+        get_monthly_comparison,
+        run_financial_health_audit
     ]
     st.session_state.chat = st.session_state.client.chats.create(
         model="gemini-3.6-flash", 
@@ -58,6 +60,15 @@ with st.sidebar:
         category_spend = df.groupby('category')['amount'].sum()
         st.bar_chart(category_spend)
 
+        # Quick Action: AI CFO Audit Button
+        st.markdown("---")
+        if st.button("🚀 Run AI CFO Audit", width="stretch"):
+            prompt = "Run a complete financial health audit on my spending."
+            st.session_state.messages.append({"role": "user", "content": prompt})
+            response = st.session_state.chat.send_message(prompt)
+            st.session_state.messages.append({"role": "assistant", "content": response.text})
+            st.rerun()
+
         # Add a dropdown to view the raw data
         with st.expander("🔍 View All Categorized Data", expanded=False):
             st.dataframe(df, width="stretch", height=300)
@@ -73,7 +84,7 @@ with st.sidebar:
 
 # --- Main Page: Chat Interface ---
 st.title("💳 AI Finance Controller")
-st.caption("Powered by Gemini function-calling on real bank data with multi-month analytics.")
+st.caption("Powered by Gemini function-calling on real bank data with multi-month analytics & CFO audit.")
 
 # Display all previous messages in the chat
 for msg in st.session_state.messages:

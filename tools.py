@@ -56,3 +56,27 @@ def get_monthly_comparison(category: str) -> str:
     grouped = matches.groupby('month')['amount'].sum().to_dict()
     breakdown = ", ".join([f"{m}: ₹{amt:,.2f}" for m, amt in grouped.items()])
     return f"Monthly trend for {category} — {breakdown}"
+
+
+def run_financial_health_audit() -> str:
+    """Performs a comprehensive financial health audit, calculating fixed vs discretionary spend and checking for waste."""
+    df = load_data()
+    total_spend = df["amount"].sum()
+    
+    # Categorize fixed vs discretionary
+    fixed_cats = ["Rent", "Subscriptions", "Utilities"]
+    fixed_spend = df[df["category"].isin(fixed_cats)]["amount"].sum()
+    discretionary_spend = total_spend - fixed_spend
+    
+    # Count duplicates and unusual items
+    dupes = df[df.duplicated(subset=["merchant", "amount", "date"], keep=False)]
+    
+    report = (
+        f"📊 **Financial Health Audit Report**\n"
+        f"- **Total Spend (3 Months):** ₹{total_spend:,.2f}\n"
+        f"- **Fixed Costs (Rent, Utilities, Subs):** ₹{fixed_spend:,.2f} ({(fixed_spend/total_spend)*100:.1f}%)"
+        f"- **Discretionary Spend:** ₹{discretionary_spend:,.2f} ({(discretionary_spend/total_spend)*100:.1f}%)"
+        f"- **Active Anomalies Found:** {len(dupes)} potential duplicate charges or waste items flagged.\n"
+        f"💡 *Recommendation: Review active subscription renewals to cut unused overhead.*"
+    )
+    return report

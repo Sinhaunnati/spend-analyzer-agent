@@ -5,8 +5,13 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-# Import your real, tested functions
-from tools import get_total_by_category, find_duplicate_charges, find_unusual_transactions
+# Import your real, tested functions (including the new monthly comparison tool)
+from tools import (
+    get_total_by_category, 
+    find_duplicate_charges, 
+    find_unusual_transactions, 
+    get_monthly_comparison
+)
 
 # Set up the look of the web page
 st.set_page_config(page_title="Spend Analyzer AI", page_icon="💳", layout="wide")
@@ -21,11 +26,15 @@ if not api_key:
 
 # Initialize the Gemini Chat Agent (only runs once per session)
 if "chat" not in st.session_state:
-    # Fix: Save the client to session_state so it stays open!
     st.session_state.client = genai.Client(api_key=api_key)
     
-    # Give the agent access to the real Python tools
-    tools = [get_total_by_category, find_duplicate_charges, find_unusual_transactions]
+    # Give the agent access to all real Python tools
+    tools = [
+        get_total_by_category, 
+        find_duplicate_charges, 
+        find_unusual_transactions, 
+        get_monthly_comparison
+    ]
     st.session_state.chat = st.session_state.client.chats.create(
         model="gemini-3.6-flash", 
         config=types.GenerateContentConfig(tools=tools),
@@ -35,7 +44,7 @@ if "chat" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# --- Sidebar: Data Overview ---
+# --- Sidebar: Data Overview & Visual Analytics ---
 with st.sidebar:
     st.header("📊 Transaction Overview")
     try:
@@ -44,10 +53,14 @@ with st.sidebar:
         st.metric(label="Total Transactions", value=len(df))
         st.metric(label="Total Spent", value=f"₹{df['amount'].sum():,.2f}")
         
+        # Native Visual Bar Chart for Judges
+        st.markdown("### 📈 Spend by Category")
+        category_spend = df.groupby('category')['amount'].sum()
+        st.bar_chart(category_spend)
+
         # Add a dropdown to view the raw data
         with st.expander("🔍 View All Categorized Data", expanded=False):
-      st.dataframe(df, width="stretch", height=300)
-           
+            st.dataframe(df, width="stretch", height=300)
     except Exception as e:
         st.error(f"Could not load transaction data: {e}")
 
@@ -56,10 +69,11 @@ with st.sidebar:
     st.markdown("- *\"How much did I spend on food?\"*")
     st.markdown("- *\"Did I get charged twice for anything?\"*")
     st.markdown("- *\"Are there any unusually large transactions?\"*")
+    st.markdown("- *\"Show me my monthly trend for Shopping.\"*")
 
 # --- Main Page: Chat Interface ---
 st.title("💳 AI Finance Controller")
-st.caption("Powered by Gemini function-calling on real bank data.")
+st.caption("Powered by Gemini function-calling on real bank data with multi-month analytics.")
 
 # Display all previous messages in the chat
 for msg in st.session_state.messages:
@@ -75,7 +89,7 @@ if prompt := st.chat_input("Ask a question about your spending..."):
 
     # Ask Gemini and run the tools
     with st.chat_message("assistant"):
-        with st.spinner("Analyzing your data..."):
+        with st.spinner("Executing Python analysis tools..."):
             try:
                 response = st.session_state.chat.send_message(prompt)
                 reply = response.text

@@ -43,3 +43,16 @@ def find_unusual_transactions() -> str:
         for row in unusual.itertuples()
     ]
     return "Unusually large transactions:\n" + "\n".join(lines)
+
+
+def get_monthly_comparison(category: str) -> str:
+    """Compares spending in a given category across different months."""
+    df = load_data()
+    df['date'] = pd.to_datetime(df['date'])
+    df['month'] = df['date'].dt.strftime('%B %Y')
+    matches = df[df["category"].str.lower() == category.lower()]
+    if matches.empty:
+        return f"No transactions found in category '{category}'."
+    grouped = matches.groupby('month')['amount'].sum().to_dict()
+    breakdown = ", ".join([f"{m}: ₹{amt:,.2f}" for m, amt in grouped.items()])
+    return f"Monthly trend for {category} — {breakdown}"

@@ -5,19 +5,18 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-# Import all real, tested functions (including the new financial audit tool)
 from tools import (
     get_total_by_category, 
     find_duplicate_charges, 
     find_unusual_transactions, 
     get_monthly_comparison,
-    run_financial_health_audit
+    run_financial_health_audit,
+    check_budget_status,
+    search_transactions_by_keyword
 )
 
-# Set up the look of the web page
 st.set_page_config(page_title="Spend Analyzer AI", page_icon="💳", layout="wide")
 
-# Load environment variables
 load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 
@@ -25,66 +24,73 @@ if not api_key:
     st.error("`GEMINI_API_KEY` not found in `.env` file. Please check your setup.")
     st.stop()
 
-# Initialize the Gemini Chat Agent (only runs once per session)
 if "chat" not in st.session_state:
     st.session_state.client = genai.Client(api_key=api_key)
-    
-    # Give the agent access to all real Python tools
     tools = [
         get_total_by_category, 
         find_duplicate_charges, 
         find_unusual_transactions, 
         get_monthly_comparison,
-        run_financial_health_audit
+        run_financial_health_audit,
+        check_budget_status,
+        search_transactions_by_keyword
     ]
     st.session_state.chat = st.session_state.client.chats.create(
         model="gemini-3.6-flash", 
         config=types.GenerateContentConfig(tools=tools),
     )
 
-# Create a place to store chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# --- Sidebar: Data Overview & Visual Analytics ---
+# --- Sidebar ---
 with st.sidebar:
     st.header("📊 Transaction Overview")
     try:
-        # Load the categorized CSV data
         df = pd.read_csv("data/transactions_categorized.csv")
         st.metric(label="Total Transactions", value=len(df))
         st.metric(label="Total Spent", value=f"₹{df['amount'].sum():,.2f}")
         
-        # Native Visual Bar Chart for Judges
         st.markdown("### 📈 Spend by Category")
         category_spend = df.groupby('category')['amount'].sum()
         st.bar_chart(category_spend)
 
-        # Quick Action: AI CFO Audit Button
         st.markdown("---")
-        if st.button("🚀 Run AI CFO Audit", width="stretch"):
+        if st.button("🚀 Run AI CFO Audit", use_container_width=True):
             prompt = "Run a complete financial health audit on my spending."
             st.session_state.messages.append({"role": "user", "content": prompt})
-            response = st.session_state.chat.send_message(prompt)
-            st.session_state.messages.append({"role": "assistant", "content": response.text})
+            try:
+                response = st.session_state.chat.send_message(prompt)
+                st.session_state.messages.append({"role": "assistant", "content": response.text})
+            except Exception:
+                st.session_state.messages.append({"role": "assistant", "content": "⚠️ Rate limit reached. Please wait 10 seconds."})
             st.rerun()
 
-        # Add a dropdown to view the raw data
+        report_text = f"RAZORPAY BUILDATHON REPORT\nTotal Spend: ₹{df['amount'].sum():,.2f}"
+        st.download_button(
+            label="📥 Download Executive Report",
+            data=report_text,
+            file_name="cfo_report.txt",
+            mime="text/plain",
+            use_container_width=True
+        )
+
         with st.expander("🔍 View All Categorized Data", expanded=False):
-            st.dataframe(df, width="stretch", height=300)
+            st.dataframe(df, use_container_width=True, height=300)
     except Exception as e:
-        st.error(f"Could not load transaction data: {e}")
+        st.error(f"Could not load data: {e}")
 
     st.markdown("---")
-    st.markdown("### 💡 Try asking:")
+    st.markdown("### 💡 Try copying these:")
     st.markdown("- *\"How much did I spend on food?\"*")
     st.markdown("- *\"Did I get charged twice for anything?\"*")
-    st.markdown("- *\"Are there any unusually large transactions?\"*")
-    st.markdown("- *\"Show me my monthly trend for Shopping.\"*")
+    st.markdown("- *\"Am I within my ₹60k monthly budget?\"*")
 
-# --- Main Page: Chat Interface ---
+# --- Main Chat Page ---
 st.title("💳 AI Finance Controller")
-st.caption("Powered by Gemini function-calling on real bank data with multi-month analytics & CFO audit.")
+st.caption("Powered by Gemini function-calling on real bank data.")
+
+st.markdown("---")
 
 # Display all previous messages in the chat
 for msg in st.session_state.messages:
@@ -93,20 +99,17 @@ for msg in st.session_state.messages:
 
 # The input box where you type questions
 if prompt := st.chat_input("Ask a question about your spending..."):
-    # Save and show what the user typed
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Ask Gemini and run the tools
     with st.chat_message("assistant"):
-        with st.spinner("Executing Python analysis tools..."):
+        with st.spinner("Analyzing data..."):
             try:
                 response = st.session_state.chat.send_message(prompt)
                 reply = response.text
-            except Exception as e:
-                reply = f"Error generating response: {e}"
+            except Exception:
+                reply = "⚠️ API rate limit reached (Free tier quota). Please wait about 10 seconds and try again."
             
-            # Show the final answer and save it to history
             st.markdown(reply)
             st.session_state.messages.append({"role": "assistant", "content": reply})
